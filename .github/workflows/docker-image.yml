@@ -1,0 +1,48 @@
+name: CICD-demo-service1 Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+env:
+  DOCKER_IMAGE_NAME: cide-demo-service1
+  DOCKER_REGISTRY_URL: https://hub.docker.com/repositories/lamchihung241
+  RELEASE_VERION: 0.0.1
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    # Build the Docker image
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION
+      
+    # Tag the Docker Images
+    - name: Tag the image for the registry $DOCKER_REGISTRY_URL
+      run: docker tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:$RELEASE_VERSION
+    
+    - name: Create a latest image as well
+      run: docker tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:latest
+      
+    # Push the images to the registry
+    - name: Push the Docker image with version number
+      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:$RELEASE_VERSION
+
+    - name: Push the latest tag
+      run: docker push $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:latest
+
+    # Remove the local images
+    - name: Remove the Docker image with version number
+      run: docker rmi $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:$RELEASE_VERSION
+
+    - name: Remove the Docker image with latest tag
+      run: docker rmi $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:latest
+
+    - name: Remove the local image
+      run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
