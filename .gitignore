@@ -1,0 +1,80 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+# Maven build files
+target/
+!target/classes/
+!target/*.jar
+!target/*.war
+!target/*.ear
+!target/generated-sources/
+
+# Gradle build files
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Logs and temp files
+*.log
+*.tmp
+*.out
+hs_err_pid*
+!logs/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+*.class
+*.swp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Generated files
+.mvn/
+.spring/
+.svn/
+*.bak
+*.orig
+*.rej
+*.bak
+*.patch
+
+
+
