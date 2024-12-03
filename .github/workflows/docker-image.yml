@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  DOCKER_IMAGE_NAME: cide-demo-service1
+  DOCKER_IMAGE_NAME: cicd-demo-service1
   DOCKER_REGISTRY_URL: lamchihung241
   RELEASE_VERSION: 0.0.1
 
